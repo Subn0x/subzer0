@@ -87,7 +87,7 @@ def ez_status(name,TYPE):
         print(OKBLUE + "[*] "+ TYPE + " -> %s -> " % (name) + "%s" % (ncode) + ENDC)
     elif code == 408:
         ncode = "408 ->  Request Timed out"
-        print( FAIL + "[*] "+ TYPE + " -> %s -> " % (name) + "%s" % (ncode) + ENDC)
+        print( WARNING + "[*] "+ TYPE + " -> %s -> " % (name) + "%s" % (ncode) + ENDC)
     elif code == 500:
         ncode = "500 -> Internal Server Error"
         print( FAIL + "[*] "+ TYPE + "-> %s -> " % (name) + "%s" % (ncode) + ENDC)
