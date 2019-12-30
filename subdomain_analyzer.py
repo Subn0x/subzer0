@@ -86,32 +86,132 @@ def subdomain_list(list):
         # if it contains https already, don't alter it, and scan with it, then scan using http
         if each_domain[:8] == "https://":
 
+            # say which domain it is testing
+            print("[*] Testing -> %s" % (each_domain))
+
             # send https get request
             # send back status code
             code = response_code(each_domain)
-            print("[*] HTTPS -> %s -> %d " % (each_domain, code))
+            if code == 200:
+                ncode = "200 -> OK"
+            elif code == 401:
+                ncode = "401 -> Unauthorized"
+            elif code == 403:
+                ncode = "403 -> Forbidden @_@"
+            elif code == 404:
+                ncode = "404 -> Not found | Possible Subdomain Takeover?"
+            elif code == 408:
+                ncode = "408 ->  Request Timed out"
+            elif code == 500:
+                ncode = "500 -> Internal Server Error"
+            elif code == 502:
+                ncode = "502 -> Bad Gateway"
+            elif code == 503:
+                ncode = "503 -> Service Unavailable"
+            elif code == 504:
+                ncode = "504 -> Gateway Timeout"
+            elif code == 999:
+                ncode = "Can't Connect..."
+            else:
+                ncode = "Error"
+
+            print("[*] HTTPS -> %s -> " % (each_domain) + "%s" % (ncode))
 
             # change the https:// to http://
             new_http_val = each_domain.replace("https://", "http://")
             # send http get request
             # send back status code
             code = response_code(new_http_val)
-            print("[*] HTTP -> %s -> %d" % (new_http_val, code))
+
+            if code == 200:
+                ncode = "200 -> OK"
+            elif code == 401:
+                ncode = "401 -> Unauthorized"
+            elif code == 403:
+                ncode = "403 -> Forbidden @_@"
+            elif code == 404:
+                ncode = "404 -> Not found | Possible Subdomain Takeover?"
+            elif code == 408:
+                ncode = "408 ->  Request Timed out"
+            elif code == 500:
+                ncode = "500 -> Internal Server Error"
+            elif code == 502:
+                ncode = "502 -> Bad Gateway"
+            elif code == 503:
+                ncode = "503 -> Service Unavailable"
+            elif code == 504:
+                ncode = "504 -> Gateway Timeout"
+            elif code == 999:
+                ncode = "Can't Connect..."
+            else:
+                ncode = "Error"
+
+            print("[*] HTTP -> %s -> " % (new_http_val) + "%s\n\n" % (ncode))
 
         # if it contains http already, don't alter it, and scan with it, then scan using https
         elif each_domain[:7] == "http://":
 
+            # say which domain it is testing
+            print("[*] Testing -> %s" % (each_domain))
+
             # send http get request
             # send back status code
             code = response_code(each_domain)
-            print("[*] HTTP -> %s -> %d" % (each_domain, code))
+            if code == 200:
+                ncode = "200 -> OK"
+            elif code == 401:
+                ncode = "401 -> Unauthorized"
+            elif code == 403:
+                ncode = "403 -> Forbidden @_@"
+            elif code == 404:
+                ncode = "404 -> Not found | Possible Subdomain Takeover?"
+            elif code == 408:
+                ncode = "408 ->  Request Timed out"
+            elif code == 500:
+                ncode = "500 -> Internal Server Error"
+            elif code == 502:
+                ncode = "502 -> Bad Gateway"
+            elif code == 503:
+                ncode = "503 -> Service Unavailable"
+            elif code == 504:
+                ncode = "504 -> Gateway Timeout"
+            elif code == 999:
+                ncode = "Can't Connect..."
+            else:
+                ncode = "Error"
+
+            print("[*] HTTP -> %s -> " % (each_domain) + "%s" % (ncode))
 
             # change the http:// to https://
             new_https_val = each_domain.replace("http://", "https://")
             # send https get request
             # send back status code
             code = response_code(new_https_val)
-            print("[*] HTTPS -> %s -> %d" % (new_https_val, code))
+
+            if code == 200:
+                ncode = "200 -> OK"
+            elif code == 401:
+                ncode = "401 -> Unauthorized"
+            elif code == 403:
+                ncode = "403 -> Forbidden @_@"
+            elif code == 404:
+                ncode = "404 -> Not found | Possible Subdomain Takeover?"
+            elif code == 408:
+                ncode = "408 ->  Request Timed out"
+            elif code == 500:
+                ncode = "500 -> Internal Server Error"
+            elif code == 502:
+                ncode = "502 -> Bad Gateway"
+            elif code == 503:
+                ncode = "503 -> Service Unavailable"
+            elif code == 504:
+                ncode = "504 -> Gateway Timeout"
+            elif code == 999:
+                ncode = "Can't Connect..."
+            else:
+                ncode = "Error"
+
+            print("[*] HTTPS -> %s -> " % (new_https_val) + "%s\n\n" % (ncode))
 
         # elif it doesn't contain either, add 'http://' scan it, then add 'https://' and scan with it
         elif each_domain[:7] != "http://" or each_domain[:8] != "https://":
@@ -154,6 +254,7 @@ def subdomain_list(list):
             # send https get request
             # send back status code
             code = response_code(new_https_val)
+            
             if code == 200:
                 ncode = "200 -> OK"
             elif code == 401:
@@ -228,6 +329,6 @@ else:
             break
         elif i == "-f":
             subdomain_list(sys.argv[2])
-            print("\n[*] Done! :) ")
+            print("[*] Done! :) ")
         else:
             continue
