@@ -10,6 +10,7 @@ A tool that scans a list of given domains, and returns the status codes for each
 ## Install reqs.
 
 ```pip3 install -r requirements.txt```
+>Note: shouldn't need to if you already have a base install of python. All the libs are default atm.
 
 ## Run
 
