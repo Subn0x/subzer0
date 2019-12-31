@@ -178,7 +178,6 @@ def response_code(name):
         stat_code = response.status_code
         return stat_code
 
-    # if the request takes too long to respond after 6.05 seconds
     except requests.Timeout:
         stat_code = 408
         return stat_code
@@ -191,10 +190,8 @@ def response_code(name):
         pass
 
     except KeyboardInterrupt as key_err:
-        print("\nNext..")
-
-    else:
-        pass
+        print("\n[*] Stopping..")
+        exit()
 
 
 try:
