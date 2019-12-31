@@ -1,9 +1,9 @@
 #!/usr/bin/python3
 
-# subzer0
+# subdomain_analyzer
 # created by ~ 0xApt_
 
-# subzer0 takes a list of subdomains, and sends a get request to each one, returning the status code
+# subdomin_analyzer takes a list of subdomains, and sends a get request to each one, returning the status code
 # will go over the same subdomain TWICE, the first one for http (port 80) and the second for https (port 443)
 
 
@@ -76,7 +76,6 @@ def help():
 #shows the status codes along with domain name for https
 def ez_status(name,TYPE):
     
-    
     code = response_code(name)
     if code == 200:
         ncode = "200 -> OK"
@@ -130,58 +129,44 @@ def subdomain_list(list):
     li = [i.strip().split() for i in open(list).readlines()]
 
     for domain in li[:-1]:
-        # turns each item from the list into a string
+        
         each_domain = ''.join(domain)
 
         # if it contains https already, don't alter it, and scan with it, then scan using http
         if each_domain[:8] == "https://":
 
-            # say which domain it is testing
             print(BOLD + "[*] Testing -> %s" % (each_domain) + ENDC)
 
-            # send https get request
             ez_status(each_domain,"HTTPS")
 	    
-            # change the https:// to http://
             new_http_val = each_domain.replace("https://", "http://")
 
-            # send http get request
             ez_status(new_http_val,"HTTP")
 
 
         # if it contains http already, don't alter it; scan with it; then switch to https
         elif each_domain[:7] == "http://":
-
-            # say which domain it is testing
+            
             print(BOLD + "[*] Testing -> %s" % (each_domain) + ENDC)
-
-            # send http get request
+            
             ez_status(each_domain,"HTTP")
-
-            # change the http:// to https://
-            new_https_val = each_domain.replace("http://", "https://")
-
-            # send https get request
+            
+            new_https_val = each_domain.replace("http://", "https://")   
+              
             ez_status(new_https_val,"HTTPS")
 
 
         # elif it doesn't contain either; add 'http://' scan it, then add 'https://' and scan with it
         elif each_domain[:7] != "http://" or each_domain[:8] != "https://":
-
-            # say which domin tha it is testing first
-            print(BOLD + "[*] Testing -> %s" % (each_domain) + ENDC)
-
-            # add http to the front
-            new_http_val = ("http://" + each_domain)
-
             
-            # send http get request           
+            print(BOLD + "[*] Testing -> %s" % (each_domain) + ENDC)
+            
+            new_http_val = ("http://" + each_domain)
+                   
             ez_status(new_http_val,"HTTP")
             
-            # add https to the front
             new_https_val = ("https://" + each_domain)
 
-            # send https get request
             ez_status(new_https_val, "HTTPS")
 
 
@@ -199,8 +184,7 @@ def response_code(name):
         return stat_code
 
     except requests.ConnectionError:
-        # Couldn't connect
-        stat_code = 999  # not a juicewrld reference, just like the number :)
+        stat_code = 999 
         return stat_code
 
     except Exception as err:
