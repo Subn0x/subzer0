@@ -50,7 +50,7 @@ def help():
 
     print("""
 
-    subdomain_analyzer is a tool used to output the status codes of a list of domains
+    subzer0 is a tool used to output the status codes of a list of domains
 
     {Checks both http & https status codes}
 
@@ -58,12 +58,12 @@ def help():
 
     -f  - Specify subdomain file
 
-    Ex. 'python3 subdomain_analyzer.py -f list_of_domains.txt'
+    Ex. 'python3 subzer0.py -f list_of_domains.txt'
     
     
     To save the output, you can do so using following command 
     
-    'python3 subdomain_analyzer.py -f list_of_domains.txt > filetosaveoutput.txt'
+    'python3 subzer0.py -f list_of_domains.txt > filetosaveoutput.txt'
     
     Note: It may seem like it is hanging, but it's just program running in the background until it is done.
 
