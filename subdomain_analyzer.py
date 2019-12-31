@@ -59,23 +59,33 @@ def help():
 
     {Checks both http & https status codes}
 
-    -h displays help information
+    -h  - Display help information
 
-    -f to specify subdomain file
+    -f  - Specify subdomain file
 
     Ex. 'python3 subdomain_analyzer.py -f list_of_domains.txt'
+    
+    
+    To save the output, you can do so using following command 
+    
+    'python3 subdomain_analyzer.py -f list_of_domains.txt > filetosaveoutput.txt'
+    
+    Note: It may seem like it is hanging, but it's just program running in the background until it is done.
 
-    That's about it
+
+    That's about it.
 
     """)
 
 
 #shows the status codes along with domain name for https
 def ez_status(name,TYPE):
+    
+    
     code = response_code(name)
     if code == 200:
         ncode = "200 -> OK"
-        print(OKGREEN + "[*] "+ TYPE + " -> %s -> " % (name) + "%s" % (ncode) + ENDC) 
+        print(OKGREEN + "[*] "+ TYPE + " -> %s -> " % (name) + "%s" % (ncode) + ENDC)
     elif code == 401:
         ncode = "401 -> Unauthorized"
         print( WARNING + "[*] "+ TYPE + " -> %s -> " % (name) + "%s" % (ncode) + ENDC)
@@ -106,6 +116,8 @@ def ez_status(name,TYPE):
     else:
         ncode = "Error"
         print( FAIL + "[*] "+ TYPE + " -> %s -> " % (name) + "%s" % (ncode) + ENDC)
+    
+   
 
 
         
@@ -113,12 +125,12 @@ def ez_status(name,TYPE):
 def subdomain_list(list):
     
     os.system("clear")
-
     title()
     print("[*] Sit back.. this may take some time...")
     time.sleep(2)
     print("[*] Starting scan...\n")
     time.sleep(1)
+    
 
     li = [i.strip().split() for i in open(list).readlines()]
 
@@ -167,6 +179,7 @@ def subdomain_list(list):
             # add http to the front
             new_http_val = ("http://" + each_domain)
 
+            
             # send http get request           
             ez_status(new_http_val,"HTTP")
             
@@ -202,19 +215,25 @@ def response_code(name):
         print("\nNext..")
 
     else:
-        print("interesting..")
+        pass
 
 
-if len(sys.argv) == 1:
+try:
+    if sys.argv[1] == "-h":
+        help()
+    elif sys.argv[1] == "-f":
+        try:
+            domain_file = sys.argv[2]
+            subdomain_list(domain_file)
+            print("[*] Done!\n")
+        except FileNotFoundError as fnf:
+            print ("[*] No such file known as '%s'" % (domain_file))
+    elif sys.argv > sys.argv[2]:
+        pass
+    else:
+        pass
+except TypeError as typerr:
     print("[*] Please use -h for help")
-else:
-    for i in sys.argv:
-        if i == "-h":
-            help()
-            break
-        elif i == "-f":
-            subdomain_list(sys.argv[2])
-            print("[*] Done! :) ")
-        else:
-            continue
+except IndexError as idxerr:
+    print("[*] Please use -h for help")
 
