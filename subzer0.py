@@ -1,9 +1,9 @@
 #!/usr/bin/python3
 
-# subdomain_analyzer
+# subzer0
 # created by ~ 0xApt_
 
-# subdomin_analyzer takes a list of subdomains, and sends a get request to each one, returning the status code
+# subzer0 takes a list of subdomains, and sends a get request to each one, returning the status code
 # will go over the same subdomain TWICE, the first one for http (port 80) and the second for https (port 443)
 
 
