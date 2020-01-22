@@ -6,7 +6,7 @@ A tool that scans a list of given domains, and returns the status codes for each
 ## Install
 
 ```sh
-git clone https://github.com/0xApt/subzer0
+git clone https://github.com/0xApt/subzer0.git
 cd subzer0
 pip3 install -r requirements.txt
 python3 subzer0.py -f domains.txt
