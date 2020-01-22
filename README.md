@@ -3,15 +3,11 @@ A tool that scans a list of given domains, and returns the status codes for each
 
 ![screenshot of subzer0](https://i.gyazo.com/a2cf94596e7a9e3fb9d423b3518cc1ef.png)
 
-## How to use
+## Install
 
-```git clone https://github.com/0xApt/subzer0```
-
-## Install reqs.
-
-```pip3 install -r requirements.txt```
-
-
-## Run
-
-```python3 subzer0.py -f domains.txt```
+```sh
+git clone https://github.com/0xApt/subzer0
+cd subzer0
+pip3 install -r requirements.txt
+python3 subzer0.py -f domains.txt
+```
