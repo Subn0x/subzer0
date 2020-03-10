@@ -111,9 +111,6 @@ def ez_status(name,TYPE):
         ncode = "Error"
         print( FAIL + "[*] "+ TYPE + " -> %s -> " % (name) + "%s" % (ncode) + ENDC)
     
-   
-
-
         
 # create a function that takes the usersfile and outputs the details on the screen
 def subdomain_list(list):
@@ -121,11 +118,9 @@ def subdomain_list(list):
     os.system("clear")
     title()
     print("[*] Sit back.. this may take some time...")
-    time.sleep(2)
     print("[*] Starting scan...\n")
-    time.sleep(1)
+   
     
-
     li = [i.strip().split() for i in open(list).readlines()]
 
     for domain in li[:-1]:
@@ -192,7 +187,6 @@ def response_code(name):
     except KeyboardInterrupt as key_err:
         print("\n[*] Stopping..")
         exit()
-
 
 try:
     if sys.argv[1] == "-h":
