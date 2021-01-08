@@ -50,15 +50,15 @@ def help():
 
     print("""
 
-    subzer0 is a tool used to output the status codes of a list of domains
+    SubZer0 is a tool used to output the status codes of a list of domains
 
     {Checks both http & https status codes}
 
-    -h  - Display help information
+    -h  -Display help information
 
     -f  - Specify subdomain file
 
-    Ex. 'python3 subzer0.py -f list_of_domains.txt'
+    Ex. 'python3 subzer0.py -f <file_containing_list_of_domains.txt>'
     
     
     To save the output, you can do so using following command 
@@ -197,13 +197,14 @@ try:
             subdomain_list(domain_file)
             print("[*] Done!\n")
         except FileNotFoundError as fnf:
-            print ("[*] No such file known as '%s'" % (domain_file))
+            print("[*] No such file known as {}".format(domain_file))   
     elif sys.argv > sys.argv[2]:
         pass
     else:
         pass
 except TypeError as typerr:
-    print("[*] Please use -h for help")
+    sys.stderr.write("[*] Please use -h for help \n")
+    sys.stout.flush()
 except IndexError as idxerr:
-    print("[*] Please use -h for help")
-
+    sys.stderr.write("[*] Please use -h for help \n")
+    sys.stout.flush()

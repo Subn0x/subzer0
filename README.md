@@ -1,4 +1,4 @@
-# subzer0.py
+# SubZer0
 A tool that scans a list of given domains, and returns the status codes for each domain on both port 80 &amp; 443
 
 ![screenshot of subzer0](https://i.gyazo.com/a2cf94596e7a9e3fb9d423b3518cc1ef.png)
